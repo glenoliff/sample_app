@@ -2,6 +2,8 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionController::TestCase
 
+  ###TODO: likely a good idea to ensure that these pages are using the helper, and not comparing against the string
+
   def setup
     @base_title = "Ruby on Rails Tutorial Sample App"
   end
@@ -9,7 +11,7 @@ class StaticPagesControllerTest < ActionController::TestCase
   test "should get home" do
     get :home
     assert_response :success
-    assert_select "title", "Home | #{@base_title}"
+    assert_select "title", "#{@base_title}"
   end
 
   test "should get help" do
