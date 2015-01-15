@@ -26,15 +26,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     
     user = User.find_by(email: 'bob.user@example.com')
-    
     assert_not_nil user
     
-    #Not sure what's going on here, page is showing the proper thing, but this test isn't working. 
-    #UI redirects properly
-    #assert_template 'users/show'
+    assert_redirected_to user
     
-    #This works but doesn't make any sense
-    #assert_template nil
+    follow_redirect!
+    
+    assert_template 'users/show'
+    
+    assert is_logged_in?
+
   end
 
 end
